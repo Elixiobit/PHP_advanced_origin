@@ -1,16 +1,14 @@
 <?php
-include $_SERVER['DOCUMENT_ROOT'] . "/../services/Autoloader.php";
-//use models\Product;
-
-spl_autoload_register([new Autoloader(), 'loadClass']);
-
-$product = new Product();
-
-function cache(ModelInterface $model) {
-    serialize($model->getAll());
-}
-
-cache(new User());
+include $_SERVER['DOCUMENT_ROOT'] . "/../config/main.php";
+include ROOT_DIR . "services/Autoloader.php";
 
 
-var_dump($product);
+spl_autoload_register([new \app\services\Autoloader(), 'loadClass']);
+
+$products = (new \app\models\Product())->getAll();
+
+$product = (new \app\models\Product())->getById(2);
+
+$product = new \app\models\Product();
+
+var_dump($products);

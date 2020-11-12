@@ -1,6 +1,7 @@
 <?php
 
-//namespace models;
+namespace app\models;
+
 class Product extends Model
 {
     public $id;
