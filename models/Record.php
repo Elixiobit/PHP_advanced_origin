@@ -70,6 +70,15 @@ abstract class Record implements ModelInterface
 
     }
 
+    public function save()
+    {
+        if(is_null($this->id)) {
+            $this->insert();
+        }else {
+            $this->update();
+        }
+    }
+
     /**
      * @param $sql
      * @param array $params
@@ -78,4 +87,6 @@ abstract class Record implements ModelInterface
     protected static function getQuery($sql, $params = []) {
         return Db::getInstance()->queryAll($sql,$params, get_called_class());
     }
+
+
 }

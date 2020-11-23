@@ -9,5 +9,5 @@ interface ModelInterface
 
     static function getTableName() : string;
 
-    function save();
+    public function save();
 }
