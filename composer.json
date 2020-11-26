@@ -1,0 +1,17 @@
+{
+    "name": "geralt/php2.courses.local",
+    "authors": [
+        {
+            "name": "matkowton",
+            "email": "matkowton@gmail.com"
+        }
+    ],
+    "require": {
+        "twig/twig": "^3.1"
+    },
+    "autoload": {
+        "psr-4" : {
+            "app\\" : "./"
+        }
+    }
+}

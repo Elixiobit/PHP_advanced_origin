@@ -4,6 +4,7 @@
 namespace app\controllers;
 
 
+use app\exceptions\NotFoundException;
 use app\interfaces\RenderInterface;
 
 abstract class Controller
@@ -31,7 +32,7 @@ abstract class Controller
         if(method_exists($this, $method)) {
             $this->$method();
         } else {
-            echo "404";
+            throw new NotFoundException("Метод не найден");
         }
     }
 

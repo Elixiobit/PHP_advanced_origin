@@ -4,11 +4,12 @@
 namespace app\controllers;
 
 
+use app\base\Request;
 use app\models\Product;
+use app\models\repositories\ProductRepository;
 
 class ProductController extends Controller
 {
-
     public function actionIndex()
     {
         echo "catalog";
@@ -16,8 +17,9 @@ class ProductController extends Controller
 
     public function actionCard()
     {
-        $id = $_GET['id'];
-        $model = Product::getById($id);
+        $this->useLayout = false;
+        $id = (new Request())->get('id');
+        $model = (new ProductRepository())->getById($id);
         echo $this->render('product_card', ['model' => $model]);
     }
 }
