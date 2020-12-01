@@ -18,6 +18,14 @@ class ProductRepository extends Repository
         return Product::class;
     }
 
+    public function getByIds(array $ids)
+    {
+        $table = $this->getTableName();
+        $where = implode(', ', $ids);
+        $sql = "SELECT * FROM {$table} WHERE id IN ({$where})";
+        return $this->getQuery($sql);
+    }
+
     public function getByCategoryId(int $categoryId)
     {
         $table = $this->getTableName();

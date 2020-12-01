@@ -4,6 +4,7 @@
 namespace app\models\repositories;
 
 
+use app\base\Application;
 use app\models\Record;
 use app\services\Db;
 
@@ -15,7 +16,7 @@ abstract class Repository
 
     public function __construct()
     {
-        $this->db = Db::getInstance();
+        $this->db = Application::getInstance()->db;
         $this->tableName = $this->getTableName();
     }
 
@@ -88,7 +89,8 @@ abstract class Repository
      * @return Record[]
      */
     protected function getQuery($sql, $params = []) {
-        return Db::getInstance()->queryAll($sql,$params, $this->getRecordClassname());
+        return Application::getInstance()->db
+            ->queryAll($sql,$params, $this->getRecordClassname());
     }
 
     abstract public function getTableName(): string;

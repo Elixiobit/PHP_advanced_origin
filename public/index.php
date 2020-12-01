@@ -1,24 +1,8 @@
 <?php
-include $_SERVER['DOCUMENT_ROOT'] . "/../config/main.php";
-include ROOT_DIR . "services/Autoloader.php";
-include VENDOR_DIR . 'autoload.php';
 
-$request = new \app\base\Request();
+include $_SERVER['DOCUMENT_ROOT'] . "/../services/Autoloader.php";
+include $_SERVER['DOCUMENT_ROOT'] . "/../vendor/autoload.php";
 
-$controllerName = $request->getControllerName() ?: 'product';
-$actionName = $request->getActionName();
+$config = include $_SERVER['DOCUMENT_ROOT'] . "/../config/main.php";
 
-$controllerClass = "app\controllers\\" . ucfirst($controllerName) . "Controller";
-
-if(class_exists($controllerClass)) {
-    $renderer = new \app\services\renderers\TemplateRenderer();
-    /** @var \app\controllers\Controller $controller */
-    $controller = new $controllerClass($renderer);
-   // try {
-        $controller->runAction($actionName);
-  /*  } catch (\app\exceptions\NotFoundException $e) {
-        (new \app\controllers\ErrorController($renderer))->runAction('notFound');
-    } catch (Exception $e) {
-       // header("Location: /");
-    }*/
-}
+\app\base\Application::getInstance()->run($config);

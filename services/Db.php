@@ -6,16 +6,19 @@ use app\traits\SingletonTrait;
 
 class Db
 {
-    use SingletonTrait;
+    public $config;
 
-    public $config = [
-        'driver' => 'mysql',
-        'host' => 'localhost',
-        'login' => 'root',
-        'password' => 'root',
-        'database' => 'php2020',
-        'charset' => 'utf8'
-    ];
+    public function __construct($driver, $host, $login, $password, $database, $charset)
+    {
+        $this->config = [
+            'driver' => $driver,
+            'host' => $host,
+            'login' => $login,
+            'password' => $password,
+            'database' => $database,
+            'charset' => $charset
+        ];
+    }
 
     /** @var \PDO */
     private $connection = null;
