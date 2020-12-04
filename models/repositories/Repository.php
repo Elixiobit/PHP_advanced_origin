@@ -8,7 +8,8 @@ use app\base\Application;
 use app\models\Record;
 use app\services\Db;
 
-abstract class Repository
+abstract class
+Repository
 {
     /** @var Db|null  */
     protected $db;

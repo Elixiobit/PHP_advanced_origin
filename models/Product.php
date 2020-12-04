@@ -14,4 +14,9 @@ class Product extends Record
     {
         
     }
+
+    public function getPrice(Discount $discount)
+    {
+        return $this->price - $discount->getDiscount();
+    }
 }
